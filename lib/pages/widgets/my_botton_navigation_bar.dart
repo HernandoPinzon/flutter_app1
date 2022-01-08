@@ -14,7 +14,13 @@ class MyBottonNavigationBar extends StatefulWidget {
 class _MyBottonNavigationBarState extends State<MyBottonNavigationBar> {
   
   int currentTab=0;
-  
+  final List<IconData> items = [
+    Ionicons.home_outline,
+    Ionicons.heart_outline,
+    Ionicons.reader_outline,
+    Ionicons.bag_handle_outline,
+    Ionicons.person_outline
+  ];
   
   @override
   Widget build(BuildContext context) {
@@ -30,55 +36,20 @@ class _MyBottonNavigationBarState extends State<MyBottonNavigationBar> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         // ignore: prefer_const_literals_to_create_immutables
-        children: [
-          MyButtonNavigationBarItem(
-            iconData: Ionicons.home_outline, 
-            isActive: currentTab == 0,
+        children: List.generate(items.length, (index){
+          final IconData iconData = items[index];
+          return MyButtonNavigationBarItem(
+            iconData: iconData, 
+            isActive: index==currentTab,
             onPressed: (){
-              currentTab=0;
-            },),
-          MyButtonNavigationBarItem(
-            iconData: Ionicons.heart_outline, 
-            isActive: currentTab==1,
-            onPressed: (){
-              currentTab=1;
+              currentTab=index;
               setState(() {
                 
               });
-            }
-            ),
-          MyButtonNavigationBarItem(
-            iconData: Ionicons.reader_outline, 
-            isActive: currentTab==2,
-            onPressed: (){
-              currentTab=2;
-              setState(() {
-                
-              });
-            }
-            ),
-          MyButtonNavigationBarItem(
-            iconData: Ionicons.bag_handle_outline, 
-            isActive: currentTab==3,
-            onPressed: (){
-              currentTab=3;
-              setState(() {
-                
-              });
-            }
-            ),
-          MyButtonNavigationBarItem(
-            iconData: Ionicons.person_outline, 
-            isActive: currentTab==4,
-            onPressed: (){
-              currentTab=4;
-              setState(() {
-                
-              });
-            }
-            ),
-          
-        ],
+            },
+          );
+        }
+        ),
       )
     );
   }

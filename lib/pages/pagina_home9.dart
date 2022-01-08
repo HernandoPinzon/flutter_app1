@@ -5,12 +5,27 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_app2/pages/widgets/My_Counter.dart';
 import 'package:ionicons/ionicons.dart';
 import './widgets/my_botton_navigation_bar.dart';
+import 'dart:math';
 
 
-class PaginaHome extends StatelessWidget{
+class PaginaHome extends StatefulWidget{
 
-  void onPressed(String saludo){
-    print(saludo + " 😀😀😀");
+
+  @override
+  State<PaginaHome> createState() => _PaginaHomeState();
+}
+
+class _PaginaHomeState extends State<PaginaHome> {
+
+  Color color = Colors.white;
+  List<Color> colors = [Colors.red,Colors.black,Colors.blue];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    this.color = this.colors[0];
+
   }
 
   @override
@@ -20,10 +35,29 @@ class PaginaHome extends StatelessWidget{
       
       bottomNavigationBar: MyBottonNavigationBar(),
       body: Center(
-        child: MyCounter(),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+
+          children: [
+            MyCounter(
+              initialValue: 40,
+              color: color,
+            ),
+            CupertinoButton(
+              child: Text("Change colour"),
+              onPressed: (){
+                final Random random = Random();
+                final index = random.nextInt(3);
+                color = colors[index];
+                setState(() {
+                  
+                });
+              },
+            )
+          ],
+        ),
       ),
       
     );
   }
-  
 }
