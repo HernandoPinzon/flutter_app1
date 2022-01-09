@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_app2/pages/widgets/My_Counter.dart';
+import 'package:flutter_app2/pages/widgets/chronometer.dart';
 import 'package:ionicons/ionicons.dart';
 import './widgets/my_botton_navigation_bar.dart';
 import 'dart:math';
@@ -35,28 +35,8 @@ class _PaginaHomeState extends State<PaginaHome> {
       
       bottomNavigationBar: MyBottonNavigationBar(),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-
-          children: [
-            MyCounter(
-              initialValue: 40,
-              color: color,
-            ),
-            CupertinoButton(
-              child: Text("Change colour"),
-              onPressed: (){
-                final Random random = Random();
-                final index = random.nextInt(3);
-                color = colors[index];
-                setState(() {
-                  
-                });
-              },
-            )
-          ],
-        ),
-      ),
+        child: Chronometer(),
+      )
       
     );
   }
